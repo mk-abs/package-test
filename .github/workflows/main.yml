@@ -20,9 +20,7 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
-    - name: Set VERSION variable from tag
-      run: echo "VERSION=${GITHUB_REF/refs\/tags\/v/}" >> $GITHUB_ENV
     - name: Pack
-      run: dotnet pack --configuration Release /p:Version=${VERSION} --output .
+      run: dotnet pack --configuration Release -p:Version=0.0.3 --output .
     - name: Push
-      run: dotnet nuget push Abs.Common.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
+      run: dotnet nuget push Package.Calc.0.0.3.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
