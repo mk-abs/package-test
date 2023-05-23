@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <RootNamespace>package_test</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup>
+      <PackageId>Package.Calc</PackageId>
+      <RepositoryType>git</RepositoryType>
+      <RepositoryUrl>https://github.com/mk-abs/package-test</RepositoryUrl>
+  </PropertyGroup>
+
+</Project>
