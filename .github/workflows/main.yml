@@ -18,6 +18,11 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+    - name: Set tag
+      run: echo "TAG=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    - name: Output tag
+      run: |
+        echo $TAG
     - name: Exit if not tagged for NuGet publication branch
       if: ${{!startsWith(github.ref, 'refs/tags/v')}}
       run: |
