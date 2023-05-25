@@ -22,6 +22,10 @@ jobs:
         fetch-depth: 0
     - name: Installing NBGV
       run: dotnet tool install --tool-path ../../nbvg_folder nbgv
+    - name: Seting git username
+      run: git config --global user.name "GitHub Actions"
+    - name: Seting git email
+      run: git config --global user.email miraslau.kazak@slalom.com
     - name: Bumping version
       run: nbgv prepare-release --versionIncrement Minor
     - name: Build
