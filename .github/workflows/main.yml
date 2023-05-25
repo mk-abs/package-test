@@ -20,20 +20,24 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+    - name: Build project
+      run: dotnet build
     - name: Installing NBGV
-      run: dotnet tool install --tool-path ../../nbvg_folder nbgv
+      run: dotnet tool install --tool-path ../../nbvg_tool nbgv
+    - name: Bumping version (Minor for PR merge)
+      run: nbgv prepare-release --versionIncrement Minor
     - name: Seting git username
       run: git config --global user.name "GitHub Actions"
     - name: Seting git email
-      run: git config --global user.email miraslau.kazak@slalom.com
-    - name: Bumping version
-      run: nbgv prepare-release --versionIncrement Minor
+      run: git config --global user.email github.actions@github.actions
     - name: Push changes to repo
       run: git push
-    - name: Build
-      run: dotnet build
-    - name: Getting version
+    - name: Getting build version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
-    - name: Output version
+    - name: Output build version
       run: |
         echo $VERSION
+    - name: Pack Nuget package
+      run: dotnet pack --configuration Release -p:Version=${VERSION} --output .
+    - name: Push Nuget package
+      run: dotnet nuget push Package.Calc.${RELEASE_VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
