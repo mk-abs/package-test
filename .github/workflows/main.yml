@@ -23,7 +23,7 @@ jobs:
     - name: Installing NBGV
       run: dotnet tool install --tool-path . nbgv
     - name: Bumping version
-      run: nbgv cloud
+      run: nbgv prepare-release --versionIncrement Minor
     - name: Build
       run: dotnet build
     - name: Getting version
