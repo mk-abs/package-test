@@ -21,7 +21,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Installing NBGV
-      run: dotnet tool install --tool-path . nbgv
+      run: dotnet tool install --tool-path ../../nbvg_folder nbgv
     - name: Bumping version
       run: nbgv prepare-release --versionIncrement Minor
     - name: Build
