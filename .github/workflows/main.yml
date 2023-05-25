@@ -38,6 +38,6 @@ jobs:
     - name: Pack Nuget package
       run: dotnet pack --configuration Release -p:Version=${VERSION} --output .
     - name: Push Nuget package
-      run: dotnet nuget push Package.Calc.${RELEASE_VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
+      run: dotnet nuget push Package.Calc.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
     - name: Push changes to repo
       run: git push
