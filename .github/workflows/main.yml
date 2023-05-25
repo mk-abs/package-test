@@ -26,6 +26,6 @@ jobs:
       run: nbgv cloud
     - name: Getting version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
-    - name: Output tag
+    - name: Output version
       run: |
         echo $VERSION
