@@ -24,6 +24,8 @@ jobs:
       run: dotnet tool install --tool-path . nbgv
     - name: Bumping version
       run: nbgv cloud
+    - name: Build
+      run: dotnet build
     - name: Getting version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
     - name: Output version
