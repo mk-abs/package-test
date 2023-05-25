@@ -22,14 +22,14 @@ jobs:
         fetch-depth: 0
     - name: Build project
       run: dotnet build
-    - name: Installing NBGV
-      run: dotnet tool install --tool-path ../../nbvg_tool nbgv
-    - name: Bumping version (Minor for PR merge)
-      run: nbgv prepare-release --versionIncrement Minor
     - name: Seting git username
       run: git config --global user.name "GitHub Actions"
     - name: Seting git email
       run: git config --global user.email github.actions@github.actions
+    - name: Installing NBGV
+      run: dotnet tool install --tool-path ../../nbvg_tool nbgv
+    - name: Bumping version (Minor for PR merge)
+      run: nbgv prepare-release --versionIncrement Minor
     - name: Push changes to repo
       run: git push
     - name: Getting build version
