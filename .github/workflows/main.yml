@@ -23,9 +23,9 @@ jobs:
     - name: Installing NBGV
       run: dotnet tool install --tool-path . nbgv
     - name: Bumping version
-      run: .\nbgv cloud
+      run: nbgv cloud
     - name: Getting version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
-    - name: Output tag
+    - name: Output version
       run: |
         echo $VERSION
