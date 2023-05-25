@@ -28,6 +28,8 @@ jobs:
       run: git config --global user.email miraslau.kazak@slalom.com
     - name: Bumping version
       run: nbgv prepare-release --versionIncrement Minor
+    - name: Push changes to repo
+      run: git push
     - name: Build
       run: dotnet build
     - name: Getting version
