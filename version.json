@@ -1,10 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "1.6.0-alpha",
+  "version": "1.7.0-alpha",
+  "gitCommitIdShortFixedLength": 0,
   "nuGetPackageVersion": {
     "semVer": 2.0
   },
-  "gitCommitIdShortFixedLength": 0,
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
