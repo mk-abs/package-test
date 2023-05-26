@@ -4,6 +4,7 @@
   "nuGetPackageVersion": {
     "semVer": 2.0
   },
+  "gitCommitIdShortFixedLength": 0,
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
