@@ -32,11 +32,16 @@ jobs:
       run: nbgv prepare-release --versionIncrement Minor
     - name: Getting build version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
-    - name: Output build version
+    - name: Getting nuget version
+      run: echo "NUGET_VERSION=$(nbgv get-version -v NuGetPackageVersion)" >> $GITHUB_ENV
+    - name: Output build versions
       run: |
-        echo $VERSION
+        echo Version - $VERSION
+        echo Nuget version - $NUGET_VERSION
     - name: Pack Nuget package
-      run: dotnet pack --no-build --configuration Release -p:Version=2.0.0 --output .
+      run: dotnet pack --no-build --configuration Release --output .
+    - name: Rename defauilting package name
+      run: mv Package.Calc.${NUGET_VERSION}.nupkg Package.Calc.${VERSION}.nupkg
     - name: Push Nuget package
       run: dotnet nuget push Package.Calc.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
     - name: Push changes to repo
