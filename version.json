@@ -1,6 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/dotnet/Nerdbank.GitVersioning/main/src/NerdBank.GitVersioning/version.schema.json",
-  "version": "1.9.0-alpha",
+  "version": "1.9.0",
   "gitCommitIdShortFixedLength": 0,
   "nuGetPackageVersion": {
     "semVer": 2.0,
@@ -12,6 +12,6 @@
   ],
   "release": {
     "branchName": "release/v{version}",
-    "firstUnstableTag" : "beta"
+    "firstUnstableTag": "beta"
   }
 }
