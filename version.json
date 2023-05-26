@@ -3,8 +3,7 @@
   "version": "1.11.0",
   "gitCommitIdShortFixedLength": 0,
   "nuGetPackageVersion": {
-    "semVer": 2.0,
-    "precision": "build"
+    "semVer": 1
   },
   "publicReleaseRefSpec": [
     "^refs/heads/master$",
