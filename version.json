@@ -3,7 +3,7 @@
   "version": "1.14.0",
   "gitCommitIdShortFixedLength": 5,
   "publicReleaseRefSpec": [
-    "^refs/heads/master$",
+    "^refs/heads/main$",
     "^refs/heads/v\\d+(?:\\.\\d+)?$"
   ],
   "release": {
