@@ -21,7 +21,7 @@ jobs:
       with:
         fetch-depth: 0
     - name: Build project
-      run: dotnet build
+      run: dotnet build --configuration Release
     - name: Seting git username
       run: git config --global user.name "GitHub Actions"
     - name: Seting git email
@@ -36,7 +36,7 @@ jobs:
       run: |
         echo $VERSION
     - name: Pack Nuget package
-      run: dotnet pack --configuration Release -p:Version=${VERSION} --output .
+      run: dotnet pack --no-build --configuration Release -p:Version=2.0.0 --output .
     - name: Push Nuget package
       run: dotnet nuget push Package.Calc.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
     - name: Push changes to repo
