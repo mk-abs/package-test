@@ -22,7 +22,7 @@ jobs:
         fetch-depth: 0
 
     - name: Build project
-          run: dotnet build --configuration Release
+      run: dotnet build --configuration Release
 
     - name: Seting git username
       run: git config --global user.name "GitHub Actions"
