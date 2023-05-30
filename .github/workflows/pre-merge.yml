@@ -1,0 +1,52 @@
+name: Pre Merge
+
+on:
+  workflow_dispatch:
+  pull request:
+    types: [opened, reopened, synchronize]
+
+permissions: 'write-all'
+
+env:
+  GH_TOKEN: ${{ secrets.GH_PAT }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+    - name: Build project
+          run: dotnet build --configuration Release
+
+    - name: Seting git username
+      run: git config --global user.name "GitHub Actions"
+
+    - name: Seting git email
+      run: git config --global user.email github.actions@github.actions
+
+    - name: Installing NBGV
+      run: dotnet tool install --tool-path ../../nbvg_tool nbgv
+
+    - name: Bumping version (Build for PR sync)
+      run: nbgv prepare-release --versionIncrement Build
+
+    - name: Getting build version
+      run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
+
+    - name: Output build version
+      run: |
+        echo Version - $VERSION
+
+    - name: Pack Nuget package
+      run: dotnet pack --no-build --configuration Release --output .
+
+    - name: Push Nuget package
+      run: dotnet nuget push Package.Calc.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
+    
+    - name: Push changes to repo
+      run: git push

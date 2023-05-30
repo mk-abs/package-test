@@ -1,4 +1,4 @@
-name: NuGet Publish
+name: Post Merge
 
 on:
   workflow_dispatch:
@@ -20,24 +20,34 @@ jobs:
       uses: actions/checkout@v2
       with:
         fetch-depth: 0
+
     - name: Build project
-      run: dotnet build --configuration Release
+          run: dotnet build --configuration Release
+
     - name: Seting git username
       run: git config --global user.name "GitHub Actions"
+
     - name: Seting git email
       run: git config --global user.email github.actions@github.actions
+
     - name: Installing NBGV
       run: dotnet tool install --tool-path ../../nbvg_tool nbgv
+
     - name: Bumping version (Minor for PR merge)
       run: nbgv prepare-release --versionIncrement Minor
+
     - name: Getting build version
       run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
-    - name: Output build versions
+
+    - name: Output build version
       run: |
         echo Version - $VERSION
+
     - name: Pack Nuget package
       run: dotnet pack --no-build --configuration Release --output .
+
     - name: Push Nuget package
       run: dotnet nuget push Package.Calc.${VERSION}.nupkg --source https://nuget.pkg.github.com/mk-abs/index.json --api-key ${GH_TOKEN}
+    
     - name: Push changes to repo
       run: git push
