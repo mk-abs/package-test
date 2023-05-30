@@ -37,7 +37,7 @@ jobs:
       run: nbgv prepare-release --versionIncrement Minor
 
     - name: Getting build version
-      run: echo "VERSION=$(nbgv get-version -v SimpleVersion)" >> $GITHUB_ENV
+      run: echo "VERSION=$(nbgv get-version -v NuGetPackageVersion)" >> $GITHUB_ENV
 
     - name: Output build version
       run: |
